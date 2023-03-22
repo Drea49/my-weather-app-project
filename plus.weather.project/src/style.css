@@ -1,7 +1,11 @@
 body {
-  border: 1px solid #676767;
-  margin: 40px;
-  padding: 25px;
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(226, 240, 254) 0%,
+    rgb(255, 247, 228) 90%
+  );
+
+  background-repeat: no-repeat;
 }
 h1 {
   font-weight: 700;
@@ -25,6 +29,15 @@ ul.climate-info {
   color: #676767;
   font-size: 15px;
 }
+footer {
+  font-size: 12px;
+}
+.container {
+  border: 1px solid rgb(166, 166, 166);
+  border-radius: 10px;
+  margin: 40px;
+  padding: 25px;
+}
 .search-engine {
   padding: 5px;
 }
@@ -39,4 +52,7 @@ ul.climate-info {
   position: relative;
   top: -34px;
   font-weight: 500;
+}
+.gitHubLink {
+  text-decoration: none;
 }
