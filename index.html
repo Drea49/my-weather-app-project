@@ -11,97 +11,100 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="src/style.css" rel="stylesheet" />
   </head>
   <body>
     <div class="container">
-      <div class="weather-app">
-        <form id="search-form">
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <form id="search-form">
+            <div class="row">
+              <div class="col-4">
+                <input
+                  type="search"
+                  id="city-input"
+                  class="form-control shadow-sm"
+                  placeholder="Enter City"
+                />
+              </div>
+              <div class="col-4">
+                <input
+                  type="submit"
+                  id="search-button"
+                  class="btn btn-primary"
+                  value="Search"
+                />
+              </div>
+              <div class="col-4" id="current-location">
+                <button type="button" class="btn btn-outline-danger">
+                  My Location 📍
+                </button>
+              </div>
+            </div>
+          </form>
+          <br />
+          <h1 id="city">Houston</h1>
+          <ul>
+            <li id="dateAndTime"></li>
+            <li class="weather-description">Cloudy</li>
+          </ul>
           <div class="row">
-            <div class="col-4">
-              <input
-                type="search"
-                id="city-input"
-                class="form-control shadow-sm"
-                placeholder="Enter City"
+            <div class="col-6">
+              <img
+                src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
+                alt="weather-icon"
               />
+              <span class="displayedTemp" id="temperature"> 66</span>
+              <span class="temperature-scales"> ℉ | ℃ </span>
             </div>
-            <div class="col-4">
-              <input
-                type="submit"
-                id="search-button"
-                class="btn btn-primary"
-                value="Search"
-              />
-            </div>
-            <div class="col-4" id="current-location">
-              <button type="button" class="btn btn-outline-danger">
-                My Location 📍
-              </button>
+            <div class="col-6">
+              <ul class="climate-info">
+                <li>Wind:<span class="wind-speed"> </span> mph</li>
+                <li>Humidity:<span class="humidity"> </span>%</li>
+              </ul>
             </div>
           </div>
-        </form>
-
-        <br />
-        <ul>
-          <li id="dateAndTime"></li>
-          <li class="weather-description">Cloudy</li>
-        </ul>
-
-        <h1 id="city">Houston</h1>
-        <div class="row">
-          <div class="col-6">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
-              alt="weather-icon"
-            />
-            <span class="displayedTemp" id="temperature"> 66</span>
-            <span class="temperature-scale"> °F </span>
-          </div>
-          <div class="col-6">
-            <ul class="climate-info">
-              <li>Wind:<span class="wind-speed"> </span> mph</li>
-              <li>Humidity:<span class="humidity"> </span>%</li>
-            </ul>
+          <div class="row">
+            <div class="col">
+              Tuesday <br />
+              53°/48°
+            </div>
+            <div class="col">
+              Wednesday <br />
+              70°/57°
+            </div>
+            <div class="col">
+              Thursday <br />
+              79°/64°
+            </div>
+            <div class="col">
+              Friday <br />
+              85°/75°
+            </div>
+            <div class="col">
+              Saturday <br />
+              80°/62°
+            </div>
+            <div class="col">
+              Sunday <br />
+              69°/51°
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            Tuesday <br />
-            53°/48°
-          </div>
-          <div class="col">
-            Wednesday <br />
-            70°/57°
-          </div>
-          <div class="col">
-            Thursday <br />
-            79°/64°
-          </div>
-          <div class="col">
-            Friday <br />
-            85°/75°
-          </div>
-          <div class="col">
-            Saturday <br />
-            80°/62°
-          </div>
-          <div class="col">
-            Sunday <br />
-            69°/51°
-          </div>
-        </div>
+        <footer>
+          <span class="gitHubLink">
+            <a
+              href="https://github.com/Drea49/my-weather-app-project"
+              target="_blank"
+            >
+              Open source code</a
+            >
+          </span>
+          by Andrea Rodriguez
+        </footer>
       </div>
     </div>
-    <footer>
-      <span class="gitHubLink">
-        <a href="https://github.com/Drea49/my-weather-app-project">
-          Open source code</a
-        >
-      </span>
-      by Andrea Rodriguez
-    </footer>
     <script type="text/javascript" src="src/script.js"></script>
   </body>
 </html>

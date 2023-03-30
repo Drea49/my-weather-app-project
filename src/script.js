@@ -31,41 +31,44 @@ function getCurrentPosition(event) {
 }
 
 function getLocation(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiKey = "9ee876206630b2b4c6ea6b8bbd4b6fc6";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+  let lat = position.coordinates.latitude;
+  let lon = position.coordinates.longitude;
+  let apiKey = "82fb0o90907dd7b6d1bc7b30ba46ff6t";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(getWeather);
 }
-
-function getWeather(response) {
-  let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(response.data.main.temp);
-
-  let humidity = document.querySelector(".humidity");
-  let wind = document.querySelector(".wind-speed");
-  let precipitation = document.querySelector(".precipitation");
-  humidity.innerHTML = response.data.humidity;
-  wind.innerHTML = response.data.wind.speed;
-  precipitation.innerHTML = response.data.precipitation;
-}
-function searchCity(city) {
-  let apiKey = "9ee876206630b2b4c6ea6b8bbd4b6fc6";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?${city}&appid=${apiKey}&units=imperial`;
-  axios.get(apiUrl).then(getWeather);
-}
-function handleSubmit(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  searchCity(city);
-}
-
 function displayCity(event) {
   event.preventDefault();
   let enteredCity = document.querySelector("#city-input");
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = enteredCity.value;
 }
+function handleSubmit(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-input").value;
+  //searchCity(position);
+}
+function getWeather(response) {
+  console.log(response.data);
+  let temperature = document.querySelector("#temperature");
+  temperature.innerHTML = Math.round(response.data.temperature.current);
+  let condition = document.querySelector(".weather-description");
+  let humidity = document.querySelector(".humidity");
+  let wind = document.querySelector(".wind-speed");
+  let precipitation = document.querySelector(".precipitation");
+  humidity.innerHTML = response.data.temperature.humidity;
+  wind.innerHTML = response.data.wind.speed;
+  precipitation.innerHTML = response.data.precipitation;
+  condition.innerHTML = response.data.condition.description;
+}
+function searchCity(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = "82fb0o90907dd7b6d1bc7b30ba46ff6t";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(getWeather);
+}
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
