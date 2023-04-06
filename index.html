@@ -11,6 +11,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="src/style.css" rel="stylesheet" />
   </head>
@@ -51,16 +52,13 @@
           </ul>
           <div class="row">
             <div class="col-6">
-              <img
-                src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
-                alt="weather-icon"
-              />
+              <img src="" alt="weather-icon" id="icon" class="float-left" />
               <span class="displayedTemp" id="temperature"> 66</span>
               <span class="temperature-scales"> ℉ | ℃ </span>
             </div>
             <div class="col-6">
               <ul class="climate-info">
-                <li>Wind:<span class="wind-speed"> </span> mph</li>
+                <li>Wind:<span class="wind-speed"> </span>mph</li>
                 <li>Humidity:<span class="humidity"> </span>%</li>
               </ul>
             </div>

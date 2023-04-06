@@ -29,44 +29,43 @@ function getCurrentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(getLocation);
 }
-
 function getLocation(position) {
-  let lat = position.coordinates.latitude;
-  let lon = position.coordinates.longitude;
-  let apiKey = "82fb0o90907dd7b6d1bc7b30ba46ff6t";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=imperial`;
+  let lat = position.coord.lat;
+  let lon = position.coord.lon;
+  let apiKey = "9ee876206630b2b4c6ea6b8bbd4b6fc6";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+  axios.get(apiUrl).then(search);
+}
+function search(city) {
+  let apiKey = "9ee876206630b2b4c6ea6b8bbd4b6fc6";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(getWeather);
 }
-function displayCity(event) {
-  event.preventDefault();
-  let enteredCity = document.querySelector("#city-input");
-  let cityElement = document.querySelector("#city");
-  cityElement.innerHTML = enteredCity.value;
-}
-function handleSubmit(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city-input").value;
-  //searchCity(position);
-}
 function getWeather(response) {
-  console.log(response.data);
   let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(response.data.temperature.current);
   let condition = document.querySelector(".weather-description");
   let humidity = document.querySelector(".humidity");
   let wind = document.querySelector(".wind-speed");
   let precipitation = document.querySelector(".precipitation");
-  humidity.innerHTML = response.data.temperature.humidity;
+  let iconElement = document.querySelector("#icon");
+  let enteredCity = document.querySelector("#city-input");
+  let cityElement = document.querySelector("#city");
+  cityElement.innerHTML = enteredCity.value;
+  temperature.innerHTML = Math.round(response.data.main.temp);
+  humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = response.data.wind.speed;
   precipitation.innerHTML = response.data.precipitation;
-  condition.innerHTML = response.data.condition.description;
+  condition.innerHTML = response.data.weather[0].description;
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
-function searchCity(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiKey = "82fb0o90907dd7b6d1bc7b30ba46ff6t";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=imperial`;
-  axios.get(apiUrl).then(getWeather);
+function handleSubmit(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-input").value;
+  search(city.value);
 }
 
 let form = document.querySelector("#search-form");
