@@ -46,15 +46,14 @@ function getWeather(response) {
   let condition = document.querySelector(".weather-description");
   let humidity = document.querySelector(".humidity");
   let wind = document.querySelector(".wind-speed");
-  let precipitation = document.querySelector(".precipitation");
   let iconElement = document.querySelector("#icon");
   let enteredCity = document.querySelector("#city-input");
   let cityElement = document.querySelector("#city");
+
   cityElement.innerHTML = enteredCity.value;
   temperature.innerHTML = Math.round(response.data.main.temp);
   humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = response.data.wind.speed;
-  precipitation.innerHTML = response.data.precipitation;
   condition.innerHTML = response.data.weather[0].description;
   iconElement.setAttribute(
     "src",
