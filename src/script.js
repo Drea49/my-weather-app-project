@@ -64,11 +64,12 @@ function getWeather(response) {
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input").value;
-  search(city.value);
+  search(city);
 }
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
 let cityInput = document.querySelector("#search-form");
-cityInput.addEventListener("submit", displayCity);
+cityInput.addEventListener("submit", handleSubmit);
+search("Houston");
