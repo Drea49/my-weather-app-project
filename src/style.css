@@ -40,8 +40,8 @@ footer {
   margin-bottom: 0;
 }
 .displayedTemp {
-  font-size: 50px;
-  font-weight: 600;
+  font-size: 60px;
+  font-weight: 500;
 }
 .search-engine {
   padding: 5px;
@@ -53,9 +53,16 @@ footer {
   font-size: 15px;
   position: relative;
   top: -30px;
-  font-weight: 500;
+  font-weight: 700;
 }
 .gitHubLink {
   text-decoration: none;
   padding-left: 35px;
+}
+.weather-temperature .active {
+  color: #212529;
+  cursor: default;
+}
+.weather-temperature .active:hover {
+  text-decoration: none;
 }
