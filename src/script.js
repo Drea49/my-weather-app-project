@@ -25,6 +25,22 @@ let displayDate = document.querySelector("#dateAndTime");
 let currentDate = new Date();
 displayDate.innerHTML = formatDate(currentDate);
 
+function getCurrentPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(getLocation);
+}
+function getLocation(position) {
+  let lat = position.coord.lat;
+  let lon = position.coord.lon;
+  let apiKey = "b2d9fa1f2b35557e4615dd5fab218834";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(search);
+}
+function search(city) {
+  let apiKey = "b2d9fa1f2b35557e4615dd5fab218834";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(getWeather);
+}
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -65,8 +81,9 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 function getForecast(coordinates) {
+  console.log(coordinates);
   let apiKey = `b2d9fa1f2b35557e4615dd5fab218834`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 function getWeather(response) {
@@ -83,7 +100,7 @@ function getWeather(response) {
   cityElement.innerHTML = enteredCity.value;
   temperature.innerHTML = Math.round(response.data.main.temp);
   humidity.innerHTML = response.data.main.humidity;
-  wind.innerHTML = Math.round(response.data.wind.speed);
+  wind.innerHTML = response.data.wind.speed;
   condition.innerHTML = response.data.weather[0].description;
   iconElement.setAttribute(
     "src",
@@ -93,33 +110,43 @@ function getWeather(response) {
 
   getForecast(response.data.coord);
 }
-function search(city) {
-  let apiKey = "b2d9fa1f2b35557e4615dd5fab218834";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-  axios.get(apiUrl).then(getWeather);
-}
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input").value;
-  city.innerHTML = city.value;
   search(city);
 }
-function getLocation(position) {
-  let apiKey = "b2d9fa1f2b35557e4615dd5fab218834";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coord.lat}&lon=${position.coord.lon}&appid=${apiKey}&units=imperial`;
-  axios.get(apiUrl).then(search);
-}
-function getCurrentPosition(event) {
+function displayFahrenheitTemp(event) {
   event.preventDefault();
-  navigator.geolocation.getCurrentPosition(getLocation);
+  let temperatureElement = document.querySelector("#temperature");
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
 }
+function displayCelsiusTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+}
+
+let celsiusTemp = null;
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemp);
+
 let locationBtn = document.querySelector("#current-location-btn");
-locationBtn.addEventListener("click", getCurrentPosition);
+locationBtn.addEventListener("click", getLocation);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-let cityInput = document.querySelector("#city-input");
+let cityInput = document.querySelector("#search-form");
 cityInput.addEventListener("submit", handleSubmit);
 
-search("Victoria");
+search("Houston");
