@@ -37,7 +37,7 @@
                   value="Search"
                 />
               </div>
-              <div class="col-4" id="current-location">
+              <div class="col-4" id="current-location-btn">
                 <button type="button" class="btn btn-outline-danger">
                   My Location 📍
                 </button>
@@ -48,13 +48,13 @@
           <h1 id="city">Houston</h1>
           <ul>
             <li id="dateAndTime"></li>
-            <li class="weather-description">Cloudy</li>
+            <li class="weather-description"></li>
           </ul>
           <div class="row">
             <div class="col-6">
               <div class="clearfix weather-temperature">
                 <img src="" alt="weather-icon" id="icon" class="float-left" />
-                <span class="displayedTemp" id="temperature"> 66</span>
+                <span class="displayedTemp" id="temperature"> </span>
                 <span class="temperature-scales">
                   <a href="#" id="celsius-link" class="active"> ℃ </a> |
                   <a href="#" id="fahrenheit-link"> ℉ </a>
@@ -63,37 +63,12 @@
             </div>
             <div class="col-6">
               <ul class="climate-info">
-                <li>Wind: <span class="wind-speed"> </span>mph</li>
+                <li>Wind: <span class="wind-speed"> </span> km/h</li>
                 <li>Humidity: <span class="humidity"> </span>%</li>
               </ul>
             </div>
           </div>
-          <div class="row">
-            <div class="col">
-              Tuesday <br />
-              53°/48°
-            </div>
-            <div class="col">
-              Wednesday <br />
-              70°/57°
-            </div>
-            <div class="col">
-              Thursday <br />
-              79°/64°
-            </div>
-            <div class="col">
-              Friday <br />
-              85°/75°
-            </div>
-            <div class="col">
-              Saturday <br />
-              80°/62°
-            </div>
-            <div class="col">
-              Sunday <br />
-              69°/51°
-            </div>
-          </div>
+          <div class="weather-forecast"></div>
         </div>
         <footer>
           <span class="gitHubLink">

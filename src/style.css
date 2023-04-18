@@ -55,6 +55,9 @@ footer {
   top: -30px;
   font-weight: 700;
 }
+.weather-description {
+  text-transform: capitalize;
+}
 .gitHubLink {
   text-decoration: none;
   padding-left: 35px;
@@ -65,4 +68,10 @@ footer {
 }
 .weather-temperature .active:hover {
   text-decoration: none;
+}
+.weather-forecast {
+  text-align: center;
+}
+.forecast-temperature-min {
+  color: #676767;
 }
