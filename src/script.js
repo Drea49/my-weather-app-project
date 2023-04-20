@@ -83,7 +83,7 @@ function getWeather(response) {
   setTimeout(() => {
     h1.innerHTML = response.data.name;
   }, 200);
-  h1.innerHTML = response.data.name;
+
   cityElement.innerHTML = enteredCity.value;
   temperature.innerHTML = Math.round(response.data.main.temp);
   humidity.innerHTML = response.data.main.humidity;
