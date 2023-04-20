@@ -80,7 +80,9 @@ function getWeather(response) {
   let h1 = document.querySelector(".searched-city");
 
   celsiusTemp = response.data.main.temp;
-
+  setTimeout(() => {
+    h1.innerHTML = response.data.name;
+  }, 200);
   h1.innerHTML = response.data.name;
   cityElement.innerHTML = enteredCity.value;
   temperature.innerHTML = Math.round(response.data.main.temp);
